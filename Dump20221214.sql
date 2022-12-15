@@ -18,6 +18,30 @@ USE `db_study_202210_01`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `school_mst`
+--
+
+DROP TABLE IF EXISTS `school_mst`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `school_mst` (
+  `school_id` int NOT NULL AUTO_INCREMENT,
+  `school_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`school_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `school_mst`
+--
+
+LOCK TABLES `school_mst` WRITE;
+/*!40000 ALTER TABLE `school_mst` DISABLE KEYS */;
+INSERT INTO `school_mst` VALUES (1,'서울대학교'),(2,'부산대학교'),(3,'부경대학교'),(4,'부산고등학교');
+/*!40000 ALTER TABLE `school_mst` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `score_mst`
 --
 
@@ -25,11 +49,12 @@ DROP TABLE IF EXISTS `score_mst`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `score_mst` (
-  `student_name` varchar(50) DEFAULT NULL,
-  `subject` varchar(45) DEFAULT NULL,
-  `score` varchar(45) DEFAULT NULL,
-  `day_of_the_week` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `score_id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  `score` varchar(45) NOT NULL,
+  PRIMARY KEY (`score_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,32 +63,59 @@ CREATE TABLE `score_mst` (
 
 LOCK TABLES `score_mst` WRITE;
 /*!40000 ALTER TABLE `score_mst` DISABLE KEYS */;
+INSERT INTO `score_mst` VALUES (1,1,1,'90'),(2,1,2,'80'),(3,2,3,'70'),(4,3,1,'70'),(5,4,2,'80'),(6,5,3,'90'),(7,5,4,'100'),(8,5,4,'100');
 /*!40000 ALTER TABLE `score_mst` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `student_study_mst`
+-- Table structure for table `student_mst`
 --
 
-DROP TABLE IF EXISTS `student_study_mst`;
+DROP TABLE IF EXISTS `student_mst`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student_study_mst` (
-  `id` int NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `age` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `student_mst` (
+  `student_id` int NOT NULL AUTO_INCREMENT,
+  `student_name` varchar(45) NOT NULL,
+  `student_age` int NOT NULL,
+  `school_id` int NOT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_mst`
+--
+
+LOCK TABLES `student_mst` WRITE;
+/*!40000 ALTER TABLE `student_mst` DISABLE KEYS */;
+INSERT INTO `student_mst` VALUES (1,'김준일',20,1),(2,'김준일',25,2),(3,'김준이',30,1),(4,'김준이',27,3),(5,'김준삼',18,4);
+/*!40000 ALTER TABLE `student_mst` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subject_mst`
+--
+
+DROP TABLE IF EXISTS `subject_mst`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subject_mst` (
+  `subject_id` int NOT NULL,
+  `subject_name` varchar(45) NOT NULL,
+  `day_of_the_week` varchar(45) NOT NULL,
+  PRIMARY KEY (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student_study_mst`
+-- Dumping data for table `subject_mst`
 --
 
-LOCK TABLES `student_study_mst` WRITE;
-/*!40000 ALTER TABLE `student_study_mst` DISABLE KEYS */;
-INSERT INTO `student_study_mst` VALUES (2,'김규민',17),(3,'김혜진',26),(4,'박경효',NULL),(5,'윤도영',25),(6,'정순동',23),(7,'김경민',32),(8,'장혜민',26);
-/*!40000 ALTER TABLE `student_study_mst` ENABLE KEYS */;
+LOCK TABLES `subject_mst` WRITE;
+/*!40000 ALTER TABLE `subject_mst` DISABLE KEYS */;
+INSERT INTO `subject_mst` VALUES (1,'국어','월'),(2,'수학','화'),(3,'영어','수');
+/*!40000 ALTER TABLE `subject_mst` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -83,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-14 21:17:11
+-- Dump completed on 2022-12-15 21:47:48
